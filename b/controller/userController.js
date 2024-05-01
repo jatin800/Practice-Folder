@@ -29,3 +29,15 @@ export const readAllUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const updateUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const updateUser = await User.findByIdAndUpdate({ _id: userId }, req.body, {
+      new: true,
+    });
+    res.status(200).json(updateUser);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
