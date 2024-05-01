@@ -41,3 +41,13 @@ export const updateUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deleteUser = await User.findByIdAndDelete({ _id: id });
+    res.status(200).json(deleteUser);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
