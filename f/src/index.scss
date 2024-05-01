@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  overflow: hidden;
 }
 
 body {
@@ -21,6 +22,7 @@ body {
   }
   > form {
     border-radius: 1rem;
+    margin: 1rem auto;
     padding: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     > button {
@@ -89,15 +91,15 @@ hr {
       > tr {
         text-align: center;
         > td > button {
+          text-align: center;
           outline: none;
-          border-radius: 0.5rem;
+          border-radius: 50%;
           border: none;
           background-color: #2ea27d;
           color: white;
-          width: 100%;
+          width: 2rem;
           height: 2rem;
-          letter-spacing: 0.1rem;
-          margin: 0.5rem 0;
+          margin: 0.5rem 0.5rem;
           cursor: pointer;
           font-size: x-large;
           padding: 0.2rem auto;

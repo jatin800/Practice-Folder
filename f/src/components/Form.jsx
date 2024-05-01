@@ -5,7 +5,7 @@ export default function Form() {
   return (
     <>
       <div className='container'>
-        <h1>Create User</h1>
+        <h1>Create</h1>
         <form>
           <div>
             <label>

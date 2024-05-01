@@ -2,7 +2,18 @@ import React from "react";
 import { CiRead } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 export default function Table() {
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate("/edit");
+  };
+
+  const handleRead = () => {
+    navigate("/read");
+  };
+
   return (
     <div>
       <div className='userdata'>
@@ -21,10 +32,10 @@ export default function Table() {
               <td>john@example.com</td>
               <td>********</td>
               <td>
-                <button>
+                <button onClick={handleEdit}>
                   <FaUserEdit />
                 </button>
-                <button>
+                <button onClick={handleRead}>
                   <CiRead />
                 </button>
                 <button>
@@ -37,10 +48,10 @@ export default function Table() {
               <td>jane@example.com</td>
               <td>********</td>
               <td>
-                <button>
+                <button onClick={handleEdit}>
                   <FaUserEdit />
                 </button>
-                <button>
+                <button onClick={handleRead}>
                   <CiRead />
                 </button>
                 <button>
