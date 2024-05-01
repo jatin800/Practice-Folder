@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CiRead } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-export default function Table() {
+export default function Table({ name, email, password }) {
   const navigate = useNavigate();
 
   const handleEdit = () => {
@@ -28,25 +28,9 @@ export default function Table() {
           </thead>
           <tbody>
             <tr>
-              <td>John Doe</td>
-              <td>john@example.com</td>
-              <td>********</td>
-              <td>
-                <button onClick={handleEdit}>
-                  <FaUserEdit />
-                </button>
-                <button onClick={handleRead}>
-                  <CiRead />
-                </button>
-                <button>
-                  <MdDeleteForever />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jane Smith</td>
-              <td>jane@example.com</td>
-              <td>********</td>
+              <td>{name}</td>
+              <td>{email}</td>
+              <td>{password}</td>
               <td>
                 <button onClick={handleEdit}>
                   <FaUserEdit />

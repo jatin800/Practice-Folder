@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "./Table";
 import axios from "axios";
 
@@ -8,6 +8,21 @@ export default function Form() {
     email: "",
     password: "",
   });
+
+  const [userData, setUserData] = useState([]);
+
+  const fetchAllData = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/readall");
+      setUserData(res.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllData();
+  }, []);
 
   const handleInput = (e) => {
     setFormInput({
@@ -24,6 +39,7 @@ export default function Form() {
         "http://localhost:5000/create",
         formInput
       );
+      console.log(response.data);
       setFormInput({ name: "", email: "", password: "" });
     } catch (error) {
       console.log(error);
@@ -77,7 +93,14 @@ export default function Form() {
         </form>
       </div>
       <hr />
-      <Table />
+      {userData.map((data) => (
+        <Table
+          id={data._id}
+          name={data.name}
+          email={data.email}
+          password={data.password}
+        />
+      ))}
     </>
   );
 }

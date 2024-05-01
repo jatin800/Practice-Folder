@@ -10,8 +10,8 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Form />} />
-          <Route path='/edit' element={<Edit />} />
-          <Route path='/read' element={<Read />} />
+          <Route path='/edit/:id' element={<Edit />} />
+          <Route path='/read/:id' element={<Read />} />
         </Routes>
       </BrowserRouter>
     </>
