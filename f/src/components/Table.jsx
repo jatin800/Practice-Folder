@@ -3,15 +3,32 @@ import { CiRead } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-export default function Table({ name, email, password }) {
-  const navigate = useNavigate();
+import axios from "axios";
+export default function Table() {
+  const [userData, setUserData] = useState([]);
 
-  const handleEdit = () => {
-    navigate("/edit");
+  const fetchAllData = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/readall");
+      setUserData(res.data.users);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleRead = () => {
-    navigate("/read");
+  useEffect(() => {
+    fetchAllData();
+  }, []);
+
+  const navigate = useNavigate();
+
+  const handleEdit = (id) => {
+    console.log(id);
+    navigate(`/edit/${id}`);
+  };
+
+  const handleRead = (id) => {
+    navigate(`/read/${id}`);
   };
 
   return (
@@ -27,22 +44,25 @@ export default function Table({ name, email, password }) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{name}</td>
-              <td>{email}</td>
-              <td>{password}</td>
-              <td>
-                <button onClick={handleEdit}>
-                  <FaUserEdit />
-                </button>
-                <button onClick={handleRead}>
-                  <CiRead />
-                </button>
-                <button>
-                  <MdDeleteForever />
-                </button>
-              </td>
-            </tr>
+            {userData.length > 0 &&
+              userData.map((data) => (
+                <tr>
+                  <td>{data.name}</td>
+                  <td>{data.email}</td>
+                  <td>{data.password}</td>
+                  <td>
+                    <button onClick={() => handleEdit(data._id)}>
+                      <FaUserEdit />
+                    </button>
+                    <button onClick={() => handleRead(data._id)}>
+                      <CiRead />
+                    </button>
+                    <button>
+                      <MdDeleteForever />
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

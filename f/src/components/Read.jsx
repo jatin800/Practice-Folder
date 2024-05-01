@@ -1,6 +1,24 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Read() {
+  const { id } = useParams();
+
+  const [userData, setUserData] = useState([]);
+  const fetchSingleUser = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/read/${id}`);
+      setUserData(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSingleUser();
+  }, []);
+
   return (
     <div>
       <div className='userdata'>
@@ -14,9 +32,9 @@ export default function Read() {
           </thead>
           <tbody>
             <tr>
-              <td>John Doe</td>
-              <td>john@example.com</td>
-              <td>********</td>
+              <td>{userData.name}</td>
+              <td>{userData.email}</td>
+              <td>{userData.password}</td>
             </tr>
           </tbody>
         </table>

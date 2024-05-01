@@ -9,21 +9,6 @@ export default function Form() {
     password: "",
   });
 
-  const [userData, setUserData] = useState([]);
-
-  const fetchAllData = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/readall");
-      setUserData(res.data.users);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchAllData();
-  }, []);
-
   const handleInput = (e) => {
     setFormInput({
       ...formInput,
@@ -93,14 +78,7 @@ export default function Form() {
         </form>
       </div>
       <hr />
-      {userData.map((data) => (
-        <Table
-          id={data._id}
-          name={data.name}
-          email={data.email}
-          password={data.password}
-        />
-      ))}
+      <Table />
     </>
   );
 }
