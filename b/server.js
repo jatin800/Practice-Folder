@@ -1,7 +1,9 @@
 import express from "express";
+import { connectToMongoDB } from "./db/DB.js";
 
 const app = express();
 
+connectToMongoDB();
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
